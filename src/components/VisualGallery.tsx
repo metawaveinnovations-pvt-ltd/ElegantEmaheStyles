@@ -15,42 +15,42 @@ export const VisualGallery: React.FC = () => {
   const galleryItems: GalleryImage[] = [
     {
       id: 'g1',
-      src: '/src/assets/images/custom_embroidery_hoop_1790114593343.jpg',
+      src: '/images/custom_embroidery_hoop_1790114593343.jpg',
       title: 'Hand-Embroidered Floral Border & Custom Script',
       category: 'Embroidery Detail',
       aspect: 'aspect-[3/4]',
     },
     {
       id: 'g2',
-      src: '/src/assets/images/handcrafted_bracelets_1790114605151.jpg',
+      src: '/images/handcrafted_bracelets_1790114605151.jpg',
       title: 'Beaded Butterfly & Freshwater Pearl Wristwear',
       category: 'Artisanal Jewelry',
       aspect: 'aspect-square',
     },
     {
       id: 'g3',
-      src: '/src/assets/images/wedding_nikkah_decor_1790114640381.jpg',
+      src: '/images/wedding_nikkah_decor_1790114640381.jpg',
       title: 'Regal Plume Signing Pen & Mirrored Keepsake Tray',
       category: 'Nikkah Tokens',
       aspect: 'aspect-[4/3]',
     },
     {
       id: 'g4',
-      src: '/src/assets/images/mehndi_dholki_thaal_1790115260811.jpg',
+      src: '/images/mehndi_dholki_thaal_1790115260811.jpg',
       title: 'Mayun & Mehndi Ceremonial Gota Thaal with Marigolds',
       category: 'Festive Ceremony',
       aspect: 'aspect-[4/3]',
     },
     {
       id: 'g5',
-      src: '/src/assets/images/anniversary_hoop_frame_1790115273401.jpg',
+      src: '/images/anniversary_hoop_frame_1790115273401.jpg',
       title: 'Anniversary Milestone Keepsake Hoop with Golden Needlework',
       category: 'Anniversary Keepsake',
       aspect: 'aspect-square',
     },
     {
       id: 'g6',
-      src: '/src/assets/images/luxe_selfcare_hamper_1790115296363.jpg',
+      src: '/images/luxe_selfcare_hamper_1790115296363.jpg',
       title: 'Luxe Fragrance & Botanical Bridal Presentation Hamper',
       category: 'Gift Hampers',
       aspect: 'aspect-[3/4]',
@@ -88,6 +88,15 @@ export const VisualGallery: React.FC = () => {
                 <img
                   src={item.src}
                   alt={item.title}
+                  loading="lazy"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (target.src.includes('/images/')) {
+                      target.src = target.src.replace('/images/', '/src/assets/images/');
+                    } else if (!target.src.includes('logo.png')) {
+                      target.src = '/logo.png';
+                    }
+                  }}
                   className="w-full h-full object-cover object-center group-hover:scale-104 transition-transform duration-700 ease-out"
                   referrerPolicy="no-referrer"
                 />

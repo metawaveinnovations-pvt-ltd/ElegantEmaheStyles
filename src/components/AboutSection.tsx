@@ -13,7 +13,7 @@ export const AboutSection: React.FC = () => {
             <div className="relative mx-auto max-w-md">
               <div className="rounded-2xl overflow-hidden shadow-lg border border-[#242120]/10 bg-white aspect-[4/5] relative">
                 <img
-                  src="/src/assets/images/custom_embroidery_hoop_1790114593343.jpg"
+                  src="/images/custom_embroidery_hoop_1790114593343.jpg"
                   alt="Elegant Emahe Style artist handcrafted hoop creation"
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"

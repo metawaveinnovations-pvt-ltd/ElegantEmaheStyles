@@ -101,6 +101,15 @@ export const OccasionGuide: React.FC<OccasionGuideProps> = ({
                   <img
                     src={item.image}
                     alt={item.title}
+                    loading="lazy"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      if (target.src.includes('/images/')) {
+                        target.src = target.src.replace('/images/', '/src/assets/images/');
+                      } else if (!target.src.includes('logo.png')) {
+                        target.src = '/logo.png';
+                      }
+                    }}
                     className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-500 ease-out"
                     referrerPolicy="no-referrer"
                   />

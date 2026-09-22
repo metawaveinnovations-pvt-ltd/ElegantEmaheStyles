@@ -113,7 +113,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCustomOrder }) => {
               {/* Primary Visual Container */}
               <div className="relative z-10 rounded-xl overflow-hidden shadow-xl border border-[#242120]/10 bg-white aspect-[16/11] group">
                 <img
-                  src="/src/assets/images/hero_bespoke_gifting_1790114580200.jpg"
+                  src="/images/hero_bespoke_gifting_1790114580200.jpg"
                   alt="Elegant Emahe Style handcrafted bespoke gifts arrangement with calligraphy hoop, Nikkah pen, and bridal favors"
                   className="w-full h-full object-cover object-center group-hover:scale-103 transition-transform duration-700 ease-out"
                   referrerPolicy="no-referrer"

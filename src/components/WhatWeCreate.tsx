@@ -14,7 +14,7 @@ export const WhatWeCreate: React.FC<WhatWeCreateProps> = ({ onSelectCategory }) 
       title: 'Wedding & Nikkah Splendor',
       subtitle: 'Feathered Signing Pens, Mirror Trays & Contract Plaques',
       description: 'Marking the monumental transition of two lives with regal finishes — satin-wrapped signing pens, hand-beaded platters, and personalized marriage token frames.',
-      image: '/src/assets/images/wedding_nikkah_decor_1790114640381.jpg',
+      image: '/images/wedding_nikkah_decor_1790114640381.jpg',
       tags: ['Feather Pens', 'Mirror Platters', 'Nikkah Plaques'],
     },
     {
@@ -23,7 +23,7 @@ export const WhatWeCreate: React.FC<WhatWeCreateProps> = ({ onSelectCategory }) 
       title: 'Custom Embroidery Hoops',
       subtitle: 'Hand-Lettered Urdu & English Calligraphy Keepsakes',
       description: 'From "Bhai Ki Shadi" and "Team Groom" to anniversary vow tributes. Each hoop combines precision hand-lettering, natural wooden frames, silk ribbon ties, and fine floral accents.',
-      image: '/src/assets/images/custom_embroidery_hoop_1790114593343.jpg',
+      image: '/images/custom_embroidery_hoop_1790114593343.jpg',
       tags: ['Personalized Names', 'Family Titles', 'Silk Floral Borders'],
     },
     {
@@ -32,7 +32,7 @@ export const WhatWeCreate: React.FC<WhatWeCreateProps> = ({ onSelectCategory }) 
       title: 'Artisanal Jewelry & Bracelets',
       subtitle: 'Butterfly Charms, Natural Pearls & Stacking Cuffs',
       description: 'Wearable tokens of grace. Meticulously hand-strung using lustrous freshwater pearls, colored crystal beads, and symbolic butterfly or evil-eye amulets.',
-      image: '/src/assets/images/handcrafted_bracelets_1790114605151.jpg',
+      image: '/images/handcrafted_bracelets_1790114605151.jpg',
       tags: ['Butterfly Charms', 'Freshwater Pearls', 'Matching Sets'],
     },
     {
@@ -41,7 +41,7 @@ export const WhatWeCreate: React.FC<WhatWeCreateProps> = ({ onSelectCategory }) 
       title: 'Bespoke Hampers & Bouquets',
       subtitle: 'Fresh Blooms, Gourmet Delights & Illuminated Boxes',
       description: 'Curated gift hampers assembled with fresh spray roses, baby’s breath, imported chocolates, fragrance treats, and glowing warm fairy lights.',
-      image: '/src/assets/images/gift_hamper_bouquet_1790114626464.jpg',
+      image: '/images/gift_hamper_bouquet_1790114626464.jpg',
       tags: ['Floral Bouquets', 'Gourmet Treats', 'Fairy Light Boxes'],
     },
   ];

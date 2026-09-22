@@ -15,25 +15,25 @@ export const InstagramSection: React.FC = () => {
   const igPosts = [
     {
       id: 'ig-1',
-      image: '/src/assets/images/custom_embroidery_hoop_1790114593343.jpg',
+      image: '/images/custom_embroidery_hoop_1790114593343.jpg',
       caption: 'Bhai Ki Shadi custom calligraphy hoop with handmade silk roses 🤍 Send DM to book for your wedding dates!',
       tag: '#CustomHoop',
     },
     {
       id: 'ig-2',
-      image: '/src/assets/images/handcrafted_bracelets_1790114605151.jpg',
+      image: '/images/handcrafted_bracelets_1790114605151.jpg',
       caption: 'Pastel crystal beads and butterfly charms restocked. Perfect bridesmaid tokens or daily wristwear ✨',
       tag: '#HandmadeJewelry',
     },
     {
       id: 'ig-3',
-      image: '/src/assets/images/wedding_nikkah_decor_1790114640381.jpg',
+      image: '/images/wedding_nikkah_decor_1790114640381.jpg',
       caption: 'Feather Nikkah signing pen and golden rim mirror plate set ready for the bride & groom ✨',
       tag: '#NikkahKeepsake',
     },
     {
       id: 'ig-4',
-      image: '/src/assets/images/gift_hamper_bouquet_1790114626464.jpg',
+      image: '/images/gift_hamper_bouquet_1790114626464.jpg',
       caption: 'Bespoke birthday gift hamper packed with love, fresh roses, chocolates and fairy lights 🎀',
       tag: '#GiftHamper',
     },

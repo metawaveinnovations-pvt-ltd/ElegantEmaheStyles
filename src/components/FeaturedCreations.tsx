@@ -55,6 +55,15 @@ export const FeaturedCreations: React.FC<FeaturedCreationsProps> = ({
               <img
                 src={heroItem.image}
                 alt={heroItem.title}
+                loading="lazy"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (target.src.includes('/images/')) {
+                    target.src = target.src.replace('/images/', '/src/assets/images/');
+                  } else if (!target.src.includes('logo.png')) {
+                    target.src = '/logo.png';
+                  }
+                }}
                 className="w-full h-full object-cover object-center group-hover:scale-103 transition-transform duration-700 ease-out"
                 referrerPolicy="no-referrer"
               />
@@ -125,6 +134,15 @@ export const FeaturedCreations: React.FC<FeaturedCreationsProps> = ({
                   <img
                     src={item.image}
                     alt={item.title}
+                    loading="lazy"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      if (target.src.includes('/images/')) {
+                        target.src = target.src.replace('/images/', '/src/assets/images/');
+                      } else if (!target.src.includes('logo.png')) {
+                        target.src = '/logo.png';
+                      }
+                    }}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                     referrerPolicy="no-referrer"
                   />

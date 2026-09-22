@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CreationItem, getWhatsAppUrl } from '../data/creations';
-import { X, MessageCircle, Sparkles, Check, Clock, Truck, ShieldCheck, MapPin } from 'lucide-react';
+import { X, MessageCircle, Sparkles, Check, Clock, Truck, ShieldCheck, MapPin, Maximize2, Minimize2 } from 'lucide-react';
 
 interface ProductDetailModalProps {
   item: CreationItem | null;
@@ -13,6 +13,18 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   onClose,
   onOpenCustomOrderWithItem,
 }) => {
+  const [isFitMode, setIsFitMode] = useState<boolean>(false);
+  const [imgLoaded, setImgLoaded] = useState<boolean>(false);
+  const [imgSrc, setImgSrc] = useState<string>('');
+
+  useEffect(() => {
+    if (item) {
+      setImgSrc(item.image);
+      setImgLoaded(false);
+      setIsFitMode(false);
+    }
+  }, [item]);
+
   // Close on Escape key press & prevent background page scrolling
   useEffect(() => {
     if (!item) return;
@@ -39,7 +51,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 md:p-6 transition-all duration-300"
+      className="fixed inset-0 z-50 bg-black/65 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 md:p-6 transition-all duration-300"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -47,26 +59,60 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
     >
       {/* Modal Container */}
       <div
-        className="relative w-full max-w-4xl bg-white rounded-2xl shadow-2xl border border-[#242120]/10 flex flex-col md:flex-row max-h-[90vh] sm:max-h-[86vh] overflow-hidden animate-in fade-in zoom-in-95 duration-200"
+        className="relative w-full max-w-4xl bg-white rounded-2xl shadow-2xl border border-[#242120]/10 flex flex-col md:flex-row max-h-[92vh] sm:max-h-[88vh] overflow-hidden animate-in fade-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Mobile Close Button - Floating top right */}
         <button
           onClick={onClose}
-          className="md:hidden absolute top-3 right-3 z-30 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full backdrop-blur-xs transition-colors"
+          className="md:hidden absolute top-3 right-3 z-30 bg-black/60 hover:bg-black/80 text-white p-2 rounded-full backdrop-blur-xs transition-colors shadow-md"
           aria-label="Close product details"
         >
           <X className="w-4 h-4" />
         </button>
 
         {/* Product Image Section - Restrained and proportionate */}
-        <div className="relative w-full md:w-5/12 lg:w-1/2 h-52 sm:h-64 md:h-auto shrink-0 bg-[#F5ECE8] overflow-hidden flex items-center justify-center">
+        <div className={`relative w-full md:w-5/12 lg:w-1/2 h-60 sm:h-72 md:h-auto md:min-h-[480px] shrink-0 overflow-hidden flex items-center justify-center transition-colors duration-300 ${
+          isFitMode ? 'bg-[#181615]' : 'bg-[#F5ECE8]'
+        }`}>
+          {/* Skeleton while loading */}
+          {!imgLoaded && (
+            <div className="absolute inset-0 bg-[#F5ECE8] animate-pulse flex flex-col items-center justify-center text-[#A07067] z-0">
+              <div className="w-10 h-10 rounded-full border border-[#A07067]/30 flex items-center justify-center">
+                <Sparkles className="w-5 h-5 animate-spin text-[#C9887C]" />
+              </div>
+              <span className="text-xs text-[#8A7D78] mt-2 font-serif">Loading handcrafted creation...</span>
+            </div>
+          )}
+
           <img
-            src={item.image}
+            src={imgSrc || item.image}
             alt={item.title}
-            className="w-full h-full object-cover object-center"
+            onLoad={() => setImgLoaded(true)}
+            onError={() => {
+              if (imgSrc.startsWith('/images/')) {
+                setImgSrc(imgSrc.replace('/images/', '/src/assets/images/'));
+              } else if (!imgSrc.includes('logo.png')) {
+                setImgSrc('/logo.png');
+              }
+              setImgLoaded(true);
+            }}
+            className={`w-full h-full transition-all duration-300 relative z-10 ${
+              isFitMode ? 'object-contain p-3 sm:p-5' : 'object-cover object-center'
+            } ${imgLoaded ? 'opacity-100' : 'opacity-0'}`}
             referrerPolicy="no-referrer"
           />
+
+          {/* Uncrop / Full Image Toggle Button */}
+          <button
+            type="button"
+            onClick={() => setIsFitMode(!isFitMode)}
+            className="absolute top-3.5 right-3.5 md:top-auto md:bottom-12 md:left-3.5 z-20 flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-black/70 hover:bg-black/90 text-white text-[11px] font-medium backdrop-blur-xs transition-colors shadow-sm border border-white/20"
+            title={isFitMode ? "Fill card" : "View full uncropped creation"}
+          >
+            {isFitMode ? <Minimize2 className="w-3.5 h-3.5 text-[#E6BFA6]" /> : <Maximize2 className="w-3.5 h-3.5 text-[#E6BFA6]" />}
+            <span>{isFitMode ? 'Fill' : 'View Full Image'}</span>
+          </button>
 
           {/* Top Badge Overlay */}
           <div className="absolute top-3.5 left-3.5 flex flex-wrap gap-1.5 z-10">
@@ -76,9 +122,9 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           </div>
 
           {/* Bottom subtle gradient on mobile for text separation */}
-          <div className="md:hidden absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
+          <div className="md:hidden absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/40 to-transparent pointer-events-none z-10" />
           
-          <div className="hidden md:flex absolute bottom-3.5 left-3.5 right-3.5 items-center justify-between text-[11px] text-white/90 bg-[#242120]/85 backdrop-blur-xs px-3 py-1.5 rounded-lg border border-white/10 shadow-xs">
+          <div className="hidden md:flex absolute bottom-3.5 left-3.5 right-3.5 items-center justify-between text-[11px] text-white/90 bg-[#242120]/85 backdrop-blur-xs px-3 py-1.5 rounded-lg border border-white/10 shadow-xs z-10">
             <span className="flex items-center gap-2">
               <img
                 src="/logo.png"
